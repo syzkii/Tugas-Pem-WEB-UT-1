@@ -1,5 +1,4 @@
-// Data Dummy
-
+// Data Dummy informasi bahan ajar
 var dataBahanAjar = [
   {
     kodeLokasi: "0TMP01",
@@ -47,6 +46,144 @@ var dataBahanAjar = [
     cover: "assets/paud_perkembangan.jpeg",
   },
 ];
+
+// ==========================
+// Data Dummy Tracking
+// ==========================
+var dataTracking = {
+  "2023001234": {
+    nomorDO: "2023001234",
+    nama: "Rina Wulandari",
+    status: "Dalam Perjalanan",
+    ekspedisi: "JNE",
+    tanggalKirim: "2025-08-25",
+    paket: "0JKT01",
+    total: "Rp 180.000",
+    perjalanan: [
+      {
+        waktu: "2025-08-25 10:12:20",
+        keterangan: "Penerimaan di Loket: TANGERANG SELATAN. Pengirim: Universitas Terbuka",
+      },
+      {
+        waktu: "2025-08-25 14:07:56",
+        keterangan: "Tiba di Hub: TANGERANG SELATAN",
+      },
+      {
+        waktu: "2025-08-25 10:12:20",
+        keterangan: "Diteruskan ke Kantor Jakarta Selatan",
+      },
+    ],
+  },
+  "2023005678": {
+    nomorDO: "2023005678",
+    nama: "Agus Pranoto",
+    status: "Dikirim",
+    ekspedisi: "Pos Indonesia",
+    tanggalKirim: "2025-08-25",
+    paket: "0UPBJJBDG",
+    total: "Rp 220.000",
+    perjalanan: [
+      {
+        waktu: "2025-08-25 10:12:20",
+        keterangan: "Penerimaan di Loket: TANGERANG SELATAN. Pengirim: Universitas Terbuka",
+      },
+      {
+        waktu: "2025-08-25 14:07:56",
+        keterangan: "Tiba di Hub: TANGERANG SELATAN",
+      },
+      {
+        waktu: "2025-08-25 16:30:10",
+        keterangan: "Diteruskan ke Kantor Kota Bandung",
+      },
+      {
+        waktu: "2025-08-26 12:15:33",
+        keterangan: "Tiba di Hub: Kota BANDUNG",
+      },
+      {
+        waktu: "2025-08-26 15:06:12",
+        keterangan: "Proses antar ke Cimahi",
+      },
+      {
+        waktu: "2025-08-26 20:00:00",
+        keterangan: "Selesai Antar. Penerima: Agus Pranoto",
+      },
+    ],
+  },
+};
+
+// Fitur Tracking Pengiriman
+// ==========================
+document.addEventListener("DOMContentLoaded", function () {
+  const trackingForm = document.getElementById("trackingForm");
+  const trackingResult = document.getElementById("trackingResult");
+
+  trackingForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const nomorDO = document.getElementById("namaMahasiswa").value.trim();
+    const data = dataTracking[nomorDO];
+
+    trackingResult.innerHTML = "";
+
+    if (!data) {
+      trackingResult.innerHTML = `
+        <div class="alert alert-danger">
+          Nomor DO <strong>${nomorDO}</strong> tidak ditemukan.
+        </div>`;
+      return;
+    }
+
+    // Hitung progress berdasarkan jumlah perjalanan
+    const totalTahap = data.perjalanan.length;
+    let progressPersen = Math.min(
+      Math.round((totalTahap / 6) * 100),
+      100
+    ); // 6 tahap = 100%
+    let warnaBar = "bg-warning";
+    if (progressPersen >= 100) warnaBar = "bg-success";
+    else if (progressPersen >= 60) warnaBar = "bg-info";
+
+    // Buat list perjalanan
+    const perjalananHTML = data.perjalanan
+      .map(
+        (item) => `
+        <li class="list-group-item">
+          <strong>${item.waktu}</strong><br>
+          ${item.keterangan}
+        </li>`
+      )
+      .join("");
+
+    // Render hasil tracking
+    trackingResult.innerHTML = `
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h6 class="fw-bold mb-2">${data.nama}</h6>
+          <p class="mb-1"><strong>Nomor DO:</strong> ${data.nomorDO}</p>
+          <p class="mb-1"><strong>Status:</strong> <span class="badge bg-success">${data.status}</span></p>
+          <p class="mb-1"><strong>Ekspedisi:</strong> ${data.ekspedisi}</p>
+          <p class="mb-1"><strong>Tanggal Kirim:</strong> ${data.tanggalKirim}</p>
+          <p class="mb-1"><strong>Jenis Paket:</strong> ${data.paket}</p>
+          <p class="mb-3"><strong>Total Pembayaran:</strong> ${data.total}</p>
+
+          <h6 class="fw-bold mt-4">Progress Pengiriman:</h6>
+          <div class="progress mb-3" style="height: 25px;">
+            <div 
+              class="progress-bar progress-bar-striped progress-bar-animated ${warnaBar}" 
+              role="progressbar" 
+              style="width: ${progressPersen}%;">
+              ${progressPersen}%
+            </div>
+          </div>
+
+          <h6 class="fw-bold mt-3">Riwayat Perjalanan:</h6>
+          <ul class="list-group list-group-flush">
+            ${perjalananHTML}
+          </ul>
+        </div>
+      </div>
+    `;
+  });
+});
 
 // Greeting otomatis
 function setGreeting() {
@@ -171,4 +308,3 @@ document.addEventListener("DOMContentLoaded", () => {
     showSection(trackingSection);
   });
 });
-
