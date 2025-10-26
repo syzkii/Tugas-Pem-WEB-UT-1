@@ -33,3 +33,11 @@ body {
 .logout-section {
   margin-top: auto;
 }
+
+.card img {
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.03);
+}

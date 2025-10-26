@@ -53,17 +53,25 @@ trackMenu.addEventListener("click", (e) => {
   infoSection.classList.add("d-none");
 });
 
-// Render data bahan ajar
+// Render data bahan ajar (gambar full di dalam card)
 function renderBahanAjar() {
   const container = document.getElementById("bahanAjarContainer");
   container.innerHTML = "";
+
   dataBahanAjar.forEach((bahan) => {
     const card = `
-      <div class="col-md-4 col-lg-3">
-        <div class="card h-100 shadow-sm">
-          <img src="${bahan.cover}" class="card-img-top" alt="${bahan.namaBarang}" />
+      <div class="col-md-4 col-lg-3 mb-3">
+        <div class="card h-100 shadow-sm border-0 overflow-hidden" style="cursor: pointer;">
+          <div class="position-relative" style="height: 400px;">
+            <img src="${bahan.cover}" 
+                 alt="${bahan.namaBarang}" 
+                 class="w-100 h-100" 
+                 style="object-fit: cover;">
+            <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-50 text-white p-2">
+              <h6 class="fw-bold mb-0">${bahan.namaBarang}</h6>
+            </div>
+          </div>
           <div class="card-body">
-            <h6 class="fw-bold">${bahan.namaBarang}</h6>
             <p class="mb-1">Kode: ${bahan.kodeBarang}</p>
             <p class="mb-1">Lokasi: ${bahan.kodeLokasi}</p>
             <p class="mb-1">Edisi: ${bahan.edisi}</p>
@@ -75,3 +83,4 @@ function renderBahanAjar() {
     container.innerHTML += card;
   });
 }
+
