@@ -269,25 +269,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // === Modal: Lupa Password ===
-  const forgotModal = document.getElementById("forgotModal");
+  // === alert: Lupa Password ===
+  const alertforgot = document.getElementById("alertforgot");
   const forgotBtn = document.getElementById("forgotBtn");
   const closeForgot = document.getElementById("closeForgot");
 
-  forgotBtn.onclick = () => (forgotModal.style.display = "block");
-  closeForgot.onclick = () => (forgotModal.style.display = "none");
+  forgotBtn.onclick = () => (alertforgot.style.display = "block");
+  closeForgot.onclick = () => (alertforgot.style.display = "none");
 
-  // === Modal: Daftar ===
-  const signupModal = document.getElementById("signupModal");
+  // === alert: Daftar ===
+  const alertsignup = document.getElementById("alertsignup");
   const signupBtn = document.getElementById("signupBtn");
   const closeSignup = document.getElementById("closeSignup");
 
-  signupBtn.onclick = () => (signupModal.style.display = "block");
-  closeSignup.onclick = () => (signupModal.style.display = "none");
+  signupBtn.onclick = () => (alertsignup.style.display = "block");
+  closeSignup.onclick = () => (alertsignup.style.display = "none");
 
-  // Tutup modal jika klik di luar box
+  // Tutup alert jika klik di luar box
   window.onclick = function (event) {
-    if (event.target === forgotModal) forgotModal.style.display = "none";
-    if (event.target === signupModal) signupModal.style.display = "none";
+    if (event.target === alertforgot) alertforgot.style.display = "none";
+    if (event.target === alertsignup) alertsignup.style.display = "none";
   };
 });

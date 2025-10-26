@@ -6,7 +6,6 @@
     <title>Login SITTA UT</title>
     <link rel="icon" type="image/png" href="assets/logo-ut.png" />
     <link rel="stylesheet" href="css/style.css" />
-    
   </head>
   <body>
     <div class="login-container">
@@ -82,29 +81,29 @@
         </form>
 
         <div class="signup-link">
-          <a href="#" id="signupBtn">Belum punya akun?</a>
+          <a href="#" class="forgot-password" id="signupBtn">Belum punya akun?</a>
         </div>
       </div>
     </div>
 
+    <!--ISI pesan-->
     <!-- Lupa Password -->
-    <div id="forgotModal" class="modal">
-      <div class="modal-content">
+    <div id="alertforgot" class="alert">
+      <div class="alert-content">
         <h2>Lupa Password</h2>
         <p>Silakan hubungi admin untuk mereset password Anda.</p>
-        <button class="modal-close" id="closeForgot">Tutup</button>
+        <button class="alert-close" id="closeForgot">Tutup</button>
       </div>
     </div>
-
+    <!--ISI pesan-->
     <!-- Daftar -->
-    <div id="signupModal" class="modal">
-      <div class="modal-content">
+    <div id="alertsignup" class="alert">
+      <div class="alert-content">
         <h2>Daftar Akun</h2>
-        <p>Fitur pendaftaran belum tersedia. Silakan coba lagi nanti.</p>
-        <button class="modal-close" id="closeSignup">Tutup</button>
+        <p>Fitur pendaftaran belum tersedia. Silakan hubungi admin SIUT.</p>
+        <button class="alert-close" id="closeSignup">Tutup</button>
       </div>
     </div>
-
     <script src="js/script.js"></script>
   </body>
 </html>
