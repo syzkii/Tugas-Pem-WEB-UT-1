@@ -1,11 +1,51 @@
 // Data Dummy
 
 var dataBahanAjar = [
-  { kodeLokasi: "0TMP01", kodeBarang: "ASIP4301", namaBarang: "Pengantar Ilmu Komunikasi", jenisBarang: "BMP", edisi: "2", stok: 548, cover: "assets/pengantar_komunikasi.jpg" },
-  { kodeLokasi: "0JKT01", kodeBarang: "EKMA4216", namaBarang: "Manajemen Keuangan", jenisBarang: "BMP", edisi: "3", stok: 392, cover: "assets/manajemen_keuangan.jpg" },
-  { kodeLokasi: "0SBY02", kodeBarang: "EKMA4310", namaBarang: "Kepemimpinan", jenisBarang: "BMP", edisi: "1", stok: 278, cover: "assets/kepemimpinan.jpg" },
-  { kodeLokasi: "0MLG01", kodeBarang: "BIOL4211", namaBarang: "Mikrobiologi Dasar", jenisBarang: "BMP", edisi: "2", stok: 165, cover: "assets/mikrobiologi.jpg" },
-  { kodeLokasi: "0UPBJJBDG", kodeBarang: "PAUD4401", namaBarang: "Perkembangan Anak Usia Dini", jenisBarang: "BMP", edisi: "4", stok: 204, cover: "assets/paud_perkembangan.jpeg" }
+  {
+    kodeLokasi: "0TMP01",
+    kodeBarang: "ASIP4301",
+    namaBarang: "Pengantar Ilmu Komunikasi",
+    jenisBarang: "BMP",
+    edisi: "2",
+    stok: 548,
+    cover: "assets/pengantar_komunikasi.jpg",
+  },
+  {
+    kodeLokasi: "0JKT01",
+    kodeBarang: "EKMA4216",
+    namaBarang: "Manajemen Keuangan",
+    jenisBarang: "BMP",
+    edisi: "3",
+    stok: 392,
+    cover: "assets/manajemen_keuangan.jpg",
+  },
+  {
+    kodeLokasi: "0SBY02",
+    kodeBarang: "EKMA4310",
+    namaBarang: "Kepemimpinan",
+    jenisBarang: "BMP",
+    edisi: "1",
+    stok: 278,
+    cover: "assets/kepemimpinan.jpg",
+  },
+  {
+    kodeLokasi: "0MLG01",
+    kodeBarang: "BIOL4211",
+    namaBarang: "Mikrobiologi Dasar",
+    jenisBarang: "BMP",
+    edisi: "2",
+    stok: 165,
+    cover: "assets/mikrobiologi.jpg",
+  },
+  {
+    kodeLokasi: "0UPBJJBDG",
+    kodeBarang: "PAUD4401",
+    namaBarang: "Perkembangan Anak Usia Dini",
+    jenisBarang: "BMP",
+    edisi: "4",
+    stok: 204,
+    cover: "assets/paud_perkembangan.jpeg",
+  },
 ];
 
 // Greeting otomatis
@@ -13,11 +53,20 @@ function setGreeting() {
   const greeting = document.getElementById("greeting");
   const hour = new Date().getHours();
   let message = "Selamat datang!";
-  if (hour >= 5 && hour < 12) message = "Selamat pagi!";
-  else if (hour >= 12 && hour < 17) message = "Selamat siang!";
-  else message = "Selamat sore!";
+
+  if (hour >= 0 && hour < 11) {
+    message = "Selamat pagi!";
+  } else if (hour >= 11 && hour < 15) {
+    message = "Selamat siang!";
+  } else if (hour >= 15 && hour < 19) {
+    message = "Selamat sore!";
+  } else {
+    message = "Selamat malam!";
+  }
+
   greeting.textContent = message;
 }
+
 setGreeting();
 
 // Sidebar toggle
@@ -83,4 +132,43 @@ function renderBahanAjar() {
     container.innerHTML += card;
   });
 }
+
+// === Sidebar Menu Aktif ===
+document.addEventListener("DOMContentLoaded", () => {
+  const menuInformasi = document.getElementById("menu-informasi");
+  const menuTracking = document.getElementById("menu-tracking");
+
+  const infoSection = document.getElementById("informasi-section");
+  const trackingSection = document.getElementById("tracking-section");
+
+  // Fungsi untuk menampilkan hanya section yang dipilih
+  function showSection(section) {
+    document.querySelectorAll("main > div.card").forEach((div) => {
+      div.classList.add("d-none");
+    });
+    section.classList.remove("d-none");
+  }
+
+  // Reset active di dua menu utama
+  function resetActive() {
+    menuInformasi.classList.remove("active");
+    menuTracking.classList.remove("active");
+  }
+
+  // Klik menu Informasi
+  menuInformasi.addEventListener("click", (e) => {
+    e.preventDefault();
+    resetActive();
+    menuInformasi.classList.add("active");
+    showSection(infoSection);
+  });
+
+  // Klik menu Tracking
+  menuTracking.addEventListener("click", (e) => {
+    e.preventDefault();
+    resetActive();
+    menuTracking.classList.add("active");
+    showSection(trackingSection);
+  });
+});
 
