@@ -250,7 +250,7 @@ body::before {
 /* LogIn Button */
 .signin-button {
   width: 100%;
-  background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+  background: linear-gradient(135deg, #fbff0b, #abadf1);
   color: #ffffff;
   border: none;
   border-radius: 12px;
