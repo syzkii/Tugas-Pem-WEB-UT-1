@@ -24,7 +24,7 @@ body {
 }
 
 #sidebar {
-  min-height: 100vh; /* Biar sidebar penuh ke bawah layar */
+  min-height: 100vh; /* Buat sidebar penuh ke bawah layar */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -32,4 +32,9 @@ body {
 
 .logout-section {
   margin-top: auto;
+
+  /*sembunyikan X pada sidebar*/
+}
+#closeSidebar {
+  display: none !important;
 }
